@@ -21,7 +21,7 @@
         <script src="https://cdn.jsdelivr.net/npm/web3@1.5.2/dist/web3.min.js"></script>
         <script>
             const contractAddress = "0x8a78c5c1873dca4d2b7e7884737969e6650ec86f";
-            const contractABI = [
+                        const contractABI = [
                 {
                     "inputs": [],
                     "stateMutability": "nonpayable",
@@ -52,7 +52,7 @@
                 },
                 {
                     "inputs": [],
-                    "name": "transaction",
+                    "name": "check_transaction",
                     "outputs": [
                         {
                             "internalType": "address",
@@ -87,7 +87,7 @@
                 await contract.methods.weixin(payer, payee,amount).send({ from: accounts[0]});
             }
             async function transaction() {
-                const result = await contract.methods.transaction().call();
+                const result = await contract.methods.check_transaction().call();
                 document.getElementById('view_payer').innerText = "Payer: " + result[0];
                 document.getElementById('view_payee').innerText = "Payee: " + result[1];
                 document.getElementById('view_amount').innerText = "Amount: " + result[2];
