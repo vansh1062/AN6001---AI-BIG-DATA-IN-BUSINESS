@@ -33,6 +33,10 @@ def SA_result():
 def genAI():
     return(render_template("genAI.html"))
 
+@app.route("/paynow", methods=["GET", "POST"])
+def paynow():
+    return(render_template("paynow.html"))
+
 @app.route("/genAI_result", methods=["GET", "POST"])
 def genAI_result():
     q = request.form.get("q")
