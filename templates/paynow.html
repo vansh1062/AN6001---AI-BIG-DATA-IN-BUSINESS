@@ -1,28 +1,26 @@
 <head>
-
-    <meta name="viewport" content="width-device-width,initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css')}}">
-
+    <meta name=""viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static',filename='styles.css')}}">
 </head>
 
 <body>
-    <div class = "container">
-    
+    <div class="container">
         <h2>Transfer Money</h2>
         <input type="text" id="payer" placeholder="Enter payer address">
         <input type="text" id="payee" placeholder="Enter payee address">
         <input type="number" id="amount" placeholder="Enter amount to transfer">
         <button class="btn" onclick="transfer()">Transfer</button>
         <button class="btn" onclick="transaction()">Transaction</button>
-        <form action="/" method="post">
-             <input type="submit" value="Main">
-        </form>
+         <form action="/" method="post">
+                    <input type="submit" value="Main">
+         </form>
         <p id="view_payer"></p>
         <p id="view_payee"></p>
         <p id="view_amount"></p>
-        <script src="https://cdn.jsdelivr.net/npm/web3@1.5.2/dist/web3.min.js"> </script>
+        
+        <script src="https://cdn.jsdelivr.net/npm/web3@1.5.2/dist/web3.min.js"></script>
         <script>
-            const contractAddress = "0x8a78c5c1873dca4d2b7e7884737969e6650ec86f";
+            const contractAddress = "0xbd00833ae824a0fc88f4cba270e3550bfdaedc6f";
             const contractABI = [
                 {
                     "inputs": [],
@@ -54,7 +52,7 @@
                 },
                 {
                     "inputs": [],
-                    "name": "check_transaction",
+                    "name": "transaction",
                     "outputs": [
                         {
                             "internalType": "address",
@@ -88,16 +86,12 @@
                 console.log("accounts[0] " + accounts[0]);
                 await contract.methods.weixin(payer, payee,amount).send({ from: accounts[0]});
             }
-            async function check_transaction() {
-                const result = await contract.methods.check_transaction().call();
+            async function transaction() {
+                const result = await contract.methods.transaction().call();
                 document.getElementById('view_payer').innerText = "Payer: " + result[0];
                 document.getElementById('view_payee').innerText = "Payee: " + result[1];
                 document.getElementById('view_amount').innerText = "Amount: " + result[2];
-    }
-</script>
+            }
+        </script>
     </div>
 </body>
-
-
-
-
